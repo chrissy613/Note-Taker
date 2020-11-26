@@ -8,7 +8,6 @@ module.exports = function(app) {
     });
     //creates note
     app.post("/api/notes", function(req, res) {
-
         let newNote = req.body;
         let uniqueId = (data.length).toString();
         console.log(uniqueId);
@@ -23,11 +22,11 @@ module.exports = function(app) {
     app.delete("/api/notes/:id", function(req, res) {
         let noteId = req.params.id;
         let newId = 0;
-        data = data.filter(currentNote => {
-           return currentNote.id != noteId;
+        data = data.filter(note => {
+           return note.id != noteId;
         });
-        for (currentNote of data) {
-            currentNote.id = newId.toString();
+        for (note of data) {
+            note.id = newId.toString();
             newId++;
         }
         fs.writeFileSync("./db/db.json", JSON.stringify(data));
